@@ -1,30 +1,3 @@
-# Hello, world!
-#
-# This is an example function named 'hello'
-# which prints 'Hello, world!'.
-#
-# You can learn more about package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Install Package:           'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
-
-hello <- function() {
-  print("Hello, world!")
-}
-
-
-
-# Los paquetes m?s b?sicos para lo que necesito
-if(!require(stringr)) { install.packages("stringr"); library(stringr) }
-if(!require(devtools)) { install.packages("devtools"); library(devtools) }
-if(!require(BiocManager)) { install.packages("BiocManager"); library(BiocManager) }
-
-
 # Instalar y cargar paquetes a la vez, requiere de fector que requiere de stringr
 insgar <- function(paquetes, actu = FALSE) {
   PAQUETES <- fector(paquetes)
