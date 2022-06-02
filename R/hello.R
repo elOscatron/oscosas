@@ -139,14 +139,6 @@ faltaN <- function(VECTORe, difA = c('a','t','g','c')) {
   return(TABLAt)
 }
 
-# mayuscom: Convierte en may?sculas, min?sculas y may?sculas la primera letra
-if(!require(R.utils)) { install.packages("R.utils"); library(R.utils) }
-mayuscom <- function(VECTORe) {
-  VECTORs <- sort(unique(c(VECTORe, stringr::str_to_title(VECTORe), R.utils::capitalize(VECTORe), toupper(VECTORe), tolower(VECTORe), stringr::str_to_lower(VECTORe))))
-  return(VECTORs)
-}
-
-
 # varfor: dado un vector o palabra, añade al principio, al final y a ambos diferentes s?mbolos, luego ordena el resultado por longitud y alfabeticamente
 varfor <- function(VECTORe, simbolos = simbi, donde = c('^', '$'), orient = TRUE, or = FALSE) {
   simbi <- data.frame(
