@@ -1,12 +1,4 @@
 
-# Coge una tabla y transforma todas las columnas que puedas ser transformadas en num?ricas en num?ricas https://stackoverflow.com/questions/32846176/applying-as-numeric-only-to-elements-of-a-list-that-can-be-coerced-to-numeric-i
-numvertir <- function(tabla){
-  COPIA <- colnames(tabla)
-  TABLA <- data.frame(lapply(tabla, type.convert, as.is = TRUE))
-  colnames(TABLA) <- COPIA
-  return(TABLA)
-}
-
 # fabla: funci?n para crear tablas facilmente poniendo el n?mero de filas y/o columnas o su nombre
 fabla <- function(columnas = NULL, filas = '', filasN = TRUE) {
   columnas <- if(length(which(is.na(suppressWarnings(as.numeric(columnas)) == TRUE))) != 0)
