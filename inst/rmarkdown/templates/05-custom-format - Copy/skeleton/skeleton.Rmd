@@ -1,0 +1,46 @@
+# Previo
+## Mi paquete
+```{r include = FALSE}
+if(!require(devtools)) { install.packages("devtools"); library(devtools) }
+
+if(require(oscosas)) {detach("package:oscosas", unload = TRUE); install_github('elOscatron/oscosas', force = TRUE, upgrade = FALSE); library(oscosas)
+  } else {install_github('elOscatron/oscosas', force = TRUE, upgrade = TRUE); library(oscosas)}
+```
+
+## Otros paquetes
+```{r include = FALSE}
+insgar(paquetes = 'minfi')
+```
+
+## Otros paquetes
+```{r include = FALSE}
+if(!require(installr)) { install.packages("installr"); library(installr) }
+updateR()
+```
+
+## Explicación
+
+## Archivos necesarios y creados no redundantes
+```{r Necesarios}
+
+```
+
+
+```{r No redundantes, eval = FALSE}
+
+```
+
+
+# Código
+```{r}
+
+```
+
+
+# Limpiar
+```{r Limpiar el área de trabajo, include = FALSE, eval = FALSE}
+descargar()
+rm(list = ls(all = TRUE))
+```
+
+
