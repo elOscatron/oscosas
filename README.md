@@ -22,11 +22,6 @@ updateR()
 
 
 ```{r Limpiar el área de trabajo, include = FALSE, eval = FALSE}
-princ <-` paste0(dirname(getwd()),'/', '00-Comun', '/')
-arch <- c(paste0(princ,list.files(princ)), paste0(getwd(),'/',list.files(getwd())))
-aDC <- arch[grep(pattern = '.R$', x = arch)]
-sapply(X = paste0(aDC), FUN = source, chdir = TRUE)
-
 descargar()
 rm(list = ls(all = TRUE))
 ````
