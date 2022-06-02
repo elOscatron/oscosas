@@ -1,20 +1,4 @@
 
-# fabla: funci?n para crear tablas facilmente poniendo el n?mero de filas y/o columnas o su nombre
-fabla <- function(columnas = NULL, filas = '', filasN = TRUE) {
-  columnas <- if(length(which(is.na(suppressWarnings(as.numeric(columnas)) == TRUE))) != 0)
-  {fector(columnas)} else {as.numeric(columnas)}
-  filas <- if(length(which(is.na(suppressWarnings(as.numeric(filas)) == TRUE))) != 0)
-  {fector(filas)} else {as.numeric(filas)}
-
-  CL <- if (class(columnas) == 'numeric') {columnas} else {length(columnas)}
-  FL <- if (class(filas) == 'numeric') {filas} else {length(filas)}
-  tabla <- data.frame(matrix(ncol = CL, nrow = FL))
-  colnames(tabla) <- if (class(columnas) == 'numeric') {seq(columnas)} else {columnas}
-  if (filasN == TRUE) {
-    row.names(tabla) <- if (class(filas) == 'numeric') {seq(filas)} else {filas}}
-  return(tabla)
-}
-
 # carguar: dado un nobre, mira si un ojeto existe, si no, busca el nombre exacto en formato rds con la fecha actual, si no est? busca con otra fecha o un archivo que contenga ese nombre. Una vez tiene el objeto, crea el archivo con el nombre y la fecha
 carguar <- function(nombre, sobreescribirO = FALSE, sobreescribirC1 = TRUE, sobreescribirC2 = TRUE, sobreescribirA = FALSE) {
   # Previos
