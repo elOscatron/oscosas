@@ -34,7 +34,7 @@ fector <- function(VECTOR) {
   }
   VECTOR <- gsub(pattern = ',$', replacement = '', x =
                    gsub(pattern = '^,', replacement = '', x = VECTOR))
-  vectorizado <- unlist(str_split(string = VECTOR, pattern = ' *, *'))
+  vectorizado <- unlist(stringr::str_split(string = VECTOR, pattern = ' *, *'))
   return(vectorizado)
 }
 
