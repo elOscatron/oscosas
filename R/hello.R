@@ -142,7 +142,7 @@ faltaN <- function(VECTORe, difA = c('a','t','g','c')) {
 # mayuscom: Convierte en may?sculas, min?sculas y may?sculas la primera letra
 if(!require(R.utils)) { install.packages("R.utils"); library(R.utils) }
 mayuscom <- function(VECTORe) {
-  VECTORs <- sort(unique(c(VECTORe, str_to_title(VECTORe), capitalize(VECTORe), toupper(VECTORe), tolower(VECTORe), str_to_lower(VECTORe))))
+  VECTORs <- sort(unique(c(VECTORe, stringr::str_to_title(VECTORe), capitalize(VECTORe), toupper(VECTORe), tolower(VECTORe), stringr::str_to_lower(VECTORe))))
   return(VECTORs)
 }
 
