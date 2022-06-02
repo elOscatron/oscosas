@@ -1,9 +1,3 @@
-# Instalar y cargar paquetes a la vez, requiere de fector que requiere de stringr
-insgar <- function(paquetes, actu = FALSE) {
-  PAQUETES <- fector(paquetes)
-  BiocManager::install(PAQUETES, update = actu)
-  lapply(PAQUETES, require, character.only = TRUE)
-}
 
 # Coge una tabla y transforma todas las columnas que puedas ser transformadas en num?ricas en num?ricas https://stackoverflow.com/questions/32846176/applying-as-numeric-only-to-elements-of-a-list-that-can-be-coerced-to-numeric-i
 numvertir <- function(tabla){
@@ -438,60 +432,4 @@ SI.ERROR <- function(intento, alternativa = TRUE, mensajeNEG = NA) {
     } else {
       mensajeNEG}}
 }
-
-
-# Guarda el tiempo actual en un objeto llamado tinicio, puedo mostrarlo si se especifica
-tic <- function(mostrar = FALSE, grado = 0) {
-  nombreI <- if (grado != 0) {paste0('tinicio',grado)} else {'tinicio'}
-  assign(x = nombreI, value = Sys.time(), envir = .GlobalEnv)
-  if (mostrar) {print(get(nombreI))}
-}
-
-# Dependiente de si.error(), da el tiempo que ha pasado entre ella y el ?ltimo 'tic', adem?s lo almacena en una tabla que crear? de no existir. Por defecto mostrar? el intervalo en formato sencillo, sin indicar inicio o fin
-tac <- function(tipo = 'simple', unidades = 'auto', mostrar = FALSE, digitos = 3, grado = 0, eliminarI = TRUE, eliminarTT = FALSE) {
-  nombreI <- if (grado != 0) {paste0('tinicio',grado)} else {'tinicio'}
-  nombreF <- if (grado != 0) {paste0('tifin',grado)} else {'tifin'}
-  tTIEMPO <- SI.ERROR(intento = tTIEMPO, alternativa = fabla(columnas = 'Inicio, Fin, Diferencia'))
-  assign(x = nombreF, value = Sys.time(), envir = .GlobalEnv)
-  INIt <- get(nombreI)
-  FINt <- get(nombreF)
-
-  tiferencia <- capture.output(round(x = difftime(time1 = FINt, time2 = INIt, units = unidades, ), digits = digitos))
-  tTIEMPO <- rbind(tTIEMPO, c(as.character(INIt), as.character(FINt), tiferencia))
-  rownames(tTIEMPO) <- NULL
-  tTIEMPO <<- tTIEMPO[!is.na(tTIEMPO$Inicio),]
-
-  resultado <- if (tipo == 'simple' | tipo == TRUE) {
-    round(x = difftime(time1 = FINt, time2 = INIt, units = unidades, ), digits = digitos)
-  } else {
-    if (tipo == 'completo') {
-      paste0('Inicio: ', INIt,'. Fin: ', FINt, '. Diferencia: ',
-             paste0(strsplit(x = tiferencia, split = ' ')[[1]][4:5], collapse = ' '))
-    } else {
-      if (tipo == 'numero') {as.numeric(strsplit(x = tiferencia, split = ' ')[[1]][4])}
-    }}
-  if (mostrar) {print(get(nombreF))}
-  rm(list = c(nombreF), envir = .GlobalEnv)
-  if (eliminarI) {rm(list = c(nombreI), envir = .GlobalEnv)}
-  if (eliminarTT) {rm(tTIEMPO, envir = .GlobalEnv)}
-  return(resultado)
-}
-
-
-# funicas, se queda con las filas ?nicas de una tabla
-funicas <- function(tabla) {
-  TABLAm <- tabla
-  TABLAm$Identificador <- ''
-  for (fila in seq(nrow(TABLAm))) {
-    FILA <- TABLAm[fila, ]
-    TABLAm$Identificador[fila] <- paste0(FILA, collapse = '')
-  }
-  TABLAs <- TABLAm[!duplicated(TABLAm$Identificador), ]
-  TABLAs$Identificador <- NULL
-  return(TABLAs)
-}
-
-
-print('Funciones cargadas:')
-print(lsf.str())
 
