@@ -39,6 +39,7 @@ updateR()
 
 # Limpiar
 ```{r Limpiar el área de trabajo, include = FALSE, eval = FALSE}
+library(oscosas)
 descargar()
 rm(list = ls(all = TRUE))
 ```
