@@ -25,20 +25,6 @@ if(!require(devtools)) { install.packages("devtools"); library(devtools) }
 if(!require(BiocManager)) { install.packages("BiocManager"); library(BiocManager) }
 
 
-# fector: Funci?n para hacer vetores facilmente, escribo entre comillas los elementos separados por comas con o sin espacios y me los da como un vector separado de verdad. Con la actualizaci?n, puedo poner comas o espacios repetidos y/o comas iniciales y finales y me las elimina
-fector <- function(VECTOR) {
-  patrones <- c(',{2,}', ', +,')
-  for (PATRON in patrones) {
-    TEMP <- gsub(pattern = PATRON, replacement = ',' , x = VECTOR)
-    VECTOR <- TEMP
-  }
-  VECTOR <- gsub(pattern = ',$', replacement = '', x =
-                   gsub(pattern = '^,', replacement = '', x = VECTOR))
-  vectorizado <- unlist(stringr::str_split(string = VECTOR, pattern = ' *, *'))
-  return(vectorizado)
-}
-
-
 # Instalar y cargar paquetes a la vez, requiere de fector que requiere de stringr
 insgar <- function(paquetes, actu = FALSE) {
   PAQUETES <- fector(paquetes)
