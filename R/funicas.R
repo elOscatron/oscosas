@@ -1,5 +1,4 @@
-# funicas, se queda con las filas ?nicas de una tabla
-#' Title
+#' Eliminación de filas duplicadas
 #'
 #' @param tabla La tabla a introducir con filas repetidas
 #'
