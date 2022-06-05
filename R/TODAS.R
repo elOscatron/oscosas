@@ -85,30 +85,6 @@ carguar <- function(nombre, sobreescribirO = FALSE, sobreescribirC1 = TRUE, sobr
 }
 
 
-# diferenteA: funci?n para detectar secuencias que tengan algo que no sea los cuatro nucle?tidos (o lo que yo diga)
-difernteA <- function(VECTORe, difA = 'a|t|g|c') {
-  VECTORi <- gsub(pattern = difA, replacement = '', ignore.case = TRUE, x = VECTORe)
-  Cuales <- which(VECTORi != '')
-  Secuencias <- VECTORe[Cuales]
-  Elemento <- gsub(pattern = '([[:alpha:]])\\1+', replacement = '\\1', x = VECTORi[Cuales])
-  TABLAs <- data.frame(Cuales, Secuencias, Elemento)
-  return(TABLAs)
-}
-
-# faltaN: para detectar secuencias a las que les falte alguno de los nucle?tidos
-faltaN <- function(VECTORe, difA = c('a','t','g','c')) {
-  TABLAt <- data.frame( row.names = seq(length(difA)))
-  for (Nucleotido in difA) {
-    CUALES <- which(nchar(VECTORe) == nchar(gsub(pattern = Nucleotido, replacement = '', ignore.case = TRUE, x = VECTORe)))
-    if (length(CUALES) != 0){
-      TABLAt[CUALES,Nucleotido] <- TRUE
-    }
-    Any <- apply(X = TABLAt, 1, FUN = sum, na.rm = TRUE)
-  }
-  TABLAt$Any <- Any
-  return(TABLAt)
-}
-
 # varfor: dado un vector o palabra, añade al principio, al final y a ambos diferentes s?mbolos, luego ordena el resultado por longitud y alfabeticamente
 varfor <- function(VECTORe, simbolos = simbi, donde = c('^', '$'), orient = TRUE, or = FALSE) {
   simbi <- data.frame(
@@ -151,19 +127,6 @@ paste.table <- function(titulo = TRUE) {
   close(f)
   return(df)
 }
-
-# Creo una funci?n para desactivar los paquetes que he cargado.
-descargar <- function() {
-  basicos <- c("package:stats","package:graphics","package:grDevices",
-               "package:utils","package:datasets",
-               "package:methods","package:base")
-  cargados <- search()[ifelse(unlist(gregexpr("package:", search())) == 1,TRUE,FALSE)]
-  cargados <- setdiff(cargados, basicos)
-  if (length(cargados) > 0)  {
-    for (package in cargados) {
-      detach(package, character.only=TRUE)}}
-}
-
 
 # Funci?n para ordenar r?pidamente las columnas de una tabla, alfab?ticamente, por lo largo de los nombres o por ambos. Tambi?n se puede especificar si quiero una primera o ?ltima especial. Si se ordena por ambas cosas, la longitud tiene preferencia, pero siempre se puede usar la funci?n dos veces si se quiere al rev?s.
 coldenar <- function(tabla, alfabetico = TRUE, largo = FALSE, primero = NA, ultimo = NA) {
@@ -382,21 +345,6 @@ finterval <- function(VECTORe = sample(x = 7418880, size = 108), fijos = 23, log
   }
   tCOL <- TABLAm
   return(tCOL)
-}
-
-
-# listejar: funci?n para crear los objetos contenidos en una lista usando el nombre que tienen en ella. Se puede especificar que no se quiere superar un l?mite, este es por defecto 23
-lisjetar <- function(LISTAe, limite = 23) {
-  for (elemento in seq(length(LISTAe))) {
-    if (elemento <= limite | limite == FALSE | is.na(limite)) {
-      ELEMENTO <- LISTAe[[elemento]]
-      NOM <- names(LISTAe)[[elemento]]
-      assign(x = NOM, value = ELEMENTO, envir = .GlobalEnv)
-    } else {
-      print(paste0("L?mite de ", limite," objetos superado, parando en '", NOM,"'"))
-      break
-    }
-  }
 }
 
 
