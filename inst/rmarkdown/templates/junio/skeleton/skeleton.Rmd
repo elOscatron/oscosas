@@ -12,7 +12,7 @@ if(require(oscosas)) {detach("package:oscosas", unload = TRUE); install_github('
 insgar(paquetes = 'minfi')
 ```
 
-## Otros paquetes
+## Actualizar R
 ```{r include = FALSE}
 if(!require(installr)) { install.packages("installr"); library(installr) }
 updateR()
