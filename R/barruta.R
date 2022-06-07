@@ -1,5 +1,6 @@
 #' Cambio de barra \ por / en rutas copiadas
 #'
+#' Idea de aquí: https://stackoverflow.com/questions/17605563/efficiently-convert-backslash-to-forward-slash-in-r
 #' @param final
 #'
 #' @return
