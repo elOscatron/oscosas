@@ -8,6 +8,7 @@
 #'
 #' @examples
 mayuscom <- function(VECTORe) {
+  VECTORe <- fector(VECTORe)
   VECTORs <- sort(unique(c(VECTORe, stringr::str_to_title(VECTORe), R.utils::capitalize(VECTORe), toupper(VECTORe), tolower(VECTORe), stringr::str_to_lower(VECTORe))))
   return(VECTORs)
 }
