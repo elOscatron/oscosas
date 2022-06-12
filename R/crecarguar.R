@@ -23,7 +23,7 @@ crecarguar <- function(intento, nombre, sobrescribirO = FALSE, sobrescribirA = F
     print('Intentando generar el objeto con la función...')
     OBJt <- try(intento, silent = TRUE)
     if (class(OBJt) == "try-error" | length(OBJt) == 0) {print(paste0("¡Oh no! al intentar generarlo da este error: '", OBJt,"'."))} else {
-      assign(x = nombre, value = OBJt, envir = .GlobalEnv)
+      assign(x = nombre, value = intento, envir = .GlobalEnv)
       print("¡Se ha generado el objeto!")
       carguar(nombre = nombre, sobrescribirO = sobrescribirO, exactoO = exactoO, exactoC = exactoC, sobrescribirA = sobrescribirA, donde = donde, formato = formato)
     }
