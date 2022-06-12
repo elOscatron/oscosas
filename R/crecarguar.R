@@ -16,7 +16,7 @@
 #' @export
 #'
 #' @examples
-crecarguar <- function(intento, nombre, sobrescribirO = FALSE, sobrescribirA = FALSE, exactoO = TRUE, exactoC = TRUE, donde = paste0(getwd(),'/'), formato = "(%Y-%m-%d-%H-%M)") {
+crecarguar <- function(intento, nombre, sobrescribirO = FALSE, sobrescribirA = FALSE, exactoO = TRUE, exactoC = TRUE, donde = paste0(getwd(),'/'), formato = "(%Y-%m-%d)") {
   # Intento Carguar el objeto
   if (carguar(nombre = nombre, sobrescribirO = sobrescribirO, exactoO = exactoO, exactoC = exactoC, sobrescribirA = sobrescribirA, donde = donde, formato = formato) == "No hay objetos ni archivos compatibles :(") {
     # Si no puedo, lo creo con la función que sea
