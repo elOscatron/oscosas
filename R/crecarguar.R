@@ -21,7 +21,7 @@ crecarguar <- function(intento, nombre, sobrescribirO = FALSE, sobrescribirA = F
   if (carguar(nombre = nombre, sobrescribirO = sobrescribirO, exactoO = exactoO, exactoC = exactoC, sobrescribirA = sobrescribirA, donde = donde, formato = formato) == "No hay objetos ni archivos compatibles :(") {
     # Si no puedo, lo creo con la función que sea
     print('Intentando generar el objeto con la función...')
-    OBJt <- try(sum(yy), silent = TRUE)
+    OBJt <- try(intento, silent = TRUE)
     if (class(OBJt) == "try-error" | length(OBJt) == 0) {print(paste0("¡Oh no! al intentar generarlo da este error: '", OBJt,"'."))} else {
       assign(x = nombre, value = OBJt)
       print("¡Se ha generado el objeto!")
