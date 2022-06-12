@@ -14,7 +14,7 @@
 #' @export
 #'
 #' @examples
-carguar <- function(nombre, sobrescribirO = FALSE, sobrescribirA = FALSE, exactoO = TRUE, exactoC = TRUE, donde = paste0(getwd(),'/'), formato = "(%Y-%m-%d-%H-%M)") {
+carguar <- function(nombre, sobrescribirO = FALSE, sobrescribirA = FALSE, exactoO = TRUE, exactoC = TRUE, donde = paste0(getwd(),'/'), formato = "(%Y-%m-%d)") {
   # Previos
   afirmativo <- gsub(pattern = ',', replacement = '|', paste0(mayuscom(VECTORe = 'yes,y,s,si,sí,t,true'), collapse = '|'))
   completo <- paste0(nombre,format(Sys.time(), formato),'.rds')
