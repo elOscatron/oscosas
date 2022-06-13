@@ -1,5 +1,5 @@
 #' Desactiva los paquetes que he cargado.
-#' No necesita argumentos
+#' No necesita argumentos. También libera la memoria
 #' @return
 #' @export
 #'
@@ -13,4 +13,5 @@ descargar <- function() {
   if (length(cargados) > 0)  {
     for (package in cargados) {
       detach(package, character.only=TRUE)}}
+  gc()
 }
