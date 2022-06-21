@@ -16,6 +16,8 @@
 #'
 #' @examples
 buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = TRUE, igmayC = TRUE, nuevo = TRUE, grande = NULL) {
+  donde <- princ['Results']
+  tiene <- paste0('samples-filtered_', proyecto)
   if (is.null(donde)) {
     donde <- paste0(getwd(), '/')
   } else {
@@ -30,14 +32,15 @@ buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = 
     VECTORt <- if(length(VECTORt) == 0) {archivosC} else {VECTORt}
     VECTORt <- grep(pattern = ELEMENTO, x = VECTORt, ignore.case = igmayT, value = TRUE)}
   VECTORt2 <- c()
-  if(carece != '') {
+  if(length(carece) != 0)
+  { if (carece[1] != '') {
     VECTORe <- fector(carece)
     for (elemento in seq(length(VECTORe))) {
       ELEMENTO <- VECTORe[elemento]
       VECTORt2 <- if(length(VECTORt2) == 0) {VECTORt} else {VECTORt2}
       VECTORt2 <- VECTORt2[!grepl(pattern = ELEMENTO, x = VECTORt2, ignore.case = igmayC)]}
   } else {
-    VECTORt2 <- VECTORt}
+    VECTORt2 <- VECTORt}}
   TABLAm2 <- archivosE[rownames(archivosE) %in% paste0(donde,VECTORt2),]
   if (!is.null(grande)) {if (grande) {
     TABLAm2 <- which.max(TABLAm2$size)} else {
