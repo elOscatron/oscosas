@@ -16,8 +16,6 @@
 #'
 #' @examples
 buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = TRUE, igmayC = TRUE, nuevo = TRUE, grande = NULL) {
-  donde <- princ['Results']
-  tiene <- paste0('samples-filtered_', proyecto)
   if (is.null(donde)) {
     donde <- paste0(getwd(), '/')
   } else {
