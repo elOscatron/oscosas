@@ -10,12 +10,13 @@
 #' @param igmayC Si se deben distinguir mayúsculas de minúsculas en el argumento 'carece'
 #' @param nuevo Si debe ser el archivo más nuevo (TRUE) o el más viejo (FALSE), por defecto es el más nuevo
 #' @param grande Si debe ser el archivo más grande (TRUE) o el más pequeño(FALSE), por defecto nada, se ignora
+#' @param todos Por defecto FALSE, si pongo TRUE mostrará todas las coincidencias
 #'
 #' @return
 #' @export
 #'
 #' @examples
-buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = TRUE, igmayC = TRUE, nuevo = TRUE, grande = NULL) {
+buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = TRUE, igmayC = TRUE, nuevo = TRUE, grande = NULL, todos = FALSE) {
   if (is.null(donde)) {
     donde <- paste0(getwd(), '/')
   } else {
@@ -49,5 +50,9 @@ buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = 
   } else {
     archivo <- rownames(TABLAm2)[which.min(TABLAm2$mtime)]}
   archivo <- rownames(archivosE)[rownames(archivosE) == archivo]
-  return(archivo)
+  # Condicional por si quiero ver todos los archivos que encajan, se sobrepone a todo
+  if (todos) {return(rownames(TABLAm2))
+  } else {
+    return(archivo)
+  }
 }
