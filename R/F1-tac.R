@@ -1,6 +1,6 @@
 #' Medición del tiempo avanzada (final)
 #'
-#' Dependiente de si.error(), da el tiempo que ha pasado entre ella y el ?ltimo 'tic', adem?s lo almacena en una tabla que crear? de no existir. Por defecto mostrar? el intervalo en formato sencillo, sin indicar inicio o fin
+#' Dependiente de si.error(), da el tiempo que ha pasado entre ella y el último 'tic', además lo almacena en una tabla que creará de no existir. Por defecto mostrará el intervalo en formato sencillo, sin indicar inicio o fin
 #' @param tipo simple (por defecto), completo o numero. Muestra el tipo de
 #' @param unidades Qué tipo de unidades temporales va a mostrar, por defecto es 'auto' y usa las de la función difftime()
 #' @param mostrar por defecto FALSE, indica si quiere que se vea el resultado
@@ -16,7 +16,7 @@
 tac <- function(tipo = 'simple', unidades = 'auto', mostrar = FALSE, digitos = 3, grado = 0, eliminarI = TRUE, eliminarTT = FALSE) {
   nombreI <- if (grado != 0) {paste0('tinicio',grado)} else {'tinicio'}
   nombreF <- if (grado != 0) {paste0('tifin',grado)} else {'tifin'}
-  tTIEMPO <- SI.ERROR(intento = tTIEMPO, alternativa = fabla(columnas = 'Inicio, Fin, Diferencia'))
+  tTIEMPO <- si.error(intento = tTIEMPO, alternativa = fabla(columnas = 'Inicio, Fin, Diferencia'))
   assign(x = nombreF, value = Sys.time(), envir = .GlobalEnv)
   INIt <- get(nombreI)
   FINt <- get(nombreF)
