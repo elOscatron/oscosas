@@ -21,14 +21,14 @@ primsalto <- function(LISTAe = list(c('a', 'b', 'BARRA'),c('c','d'),c('e','f')),
     if(any(HAYb, HAYg)){
       if(HAYb) {
         editado <- ELEMENTO[!ELEMENTO %in% 'BARRA']
-        print(editado)
+        impringar(editado, collapse = '')
         print(paste0(rep(x = '_', 77), collapse = ''))}
       if(HAYg) {
         editado <- ELEMENTO[!ELEMENTO %in% 'GUION']
-        print(editado)
+        impringar(editado, collapse = '')
         print(paste0(rep(x = '_', 77), collapse = ''))
       }} else { # Si no lo nhay simplemente imprimo el vector
-        print(ELEMENTO)}}
+        impringar(ELEMENTO, collapse = '')}}
   if(salto != FALSE) { # Condicional para añadir un salto de línea o varios
     if(salto == TRUE) {salto <- 1}
     for(saltos in seq(salto)){
