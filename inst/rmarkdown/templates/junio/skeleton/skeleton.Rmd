@@ -13,7 +13,7 @@ insgar(paquetes = 'minfi')
 ```
 
 ## Actualizar R
-```{r include = FALSE}
+```{r include = FALSE, eval = FALSE}
 if(!require(installr)) { install.packages("installr"); library(installr) }
 updateR()
 ```
