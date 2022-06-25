@@ -7,8 +7,8 @@
 #' @param sobrescribirA Si se desea sobrescribir el archivo exacto, usando el objeto. Por defecto FALSE, al poner NULL hará preguntará
 #' @param exactoO Si se desea crear un archivo exacto a partir del objeto. Por defecto TRUE, al poner NULL hará preguntará
 #' @param exactoC Si se desea crear un archivo exacto a partir del más nuevo de los compatibles. Por defecto TRUE, al poner NULL hará preguntará
-#' @param donde
-#' @param formato
+#' @param donde Donde se quiere buscar y gardar el archivo
+#' @param formato Por defecto  "(%Y-%m-%d)", es el formato de la fecha
 #'
 #' @return
 #' @export
