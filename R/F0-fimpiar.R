@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-fimpiar <- function(donde, viejpeta = 'Viejo', nomviej = 'viejo|vieja', aextraer = c('(\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2})', '(\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2})', '(\\d{4}-\\d{2}-\\d{2}-\\d{2})','\\(\\d{4}-\\d{2}-\\d{2}\\)', '\\d{4}-\\d{2}-\\d{2}',' - Copy','.[a-zA-Z]{1,4}$','\\([a-z]\\)','^[a-z]{1} ',' \\.','^ {1,}', ' {1,}$', ' {2,}', '\\d-')) {
+fimpiar <- function(donde = NULL, viejpeta = 'Viejo', nomviej = 'viejo|vieja', aextraer = c('(\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2})', '(\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2})', '(\\d{4}-\\d{2}-\\d{2}-\\d{2})','\\(\\d{4}-\\d{2}-\\d{2}\\)', '\\d{4}-\\d{2}-\\d{2}',' - Copy','.[a-zA-Z]{1,4}$','\\([a-z]\\)','^[a-z]{1} ',' \\.','^ {1,}', ' {1,}$', ' {2,}', '\\d-')) {
   if (is.null(donde)) {
     donde <- paste0(getwd(), '/')
   } else {
