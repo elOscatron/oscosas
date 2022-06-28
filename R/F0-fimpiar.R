@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-fimpiar <- function(donde = NULL, viejpeta = 'Viejo', nomviej = 'viejo|vieja', aextraer = c('(\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2})', '(\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2})', '(\\d{4}-\\d{2}-\\d{2}-\\d{2})','\\(\\d{4}-\\d{2}-\\d{2}\\)', '\\d{4}-\\d{2}-\\d{2}',' - Copy','.[a-zA-Z]{1,4}$','\\([a-z]\\)','^[a-z]{1} ',' \\.','^ {1,}', ' {1,}$', ' {2,}', '\\d-')) {
+fimpiar <- function(donde = NULL, viejpeta = 'Viejo', nomviej = 'viejo|vieja', aextraer = c('(\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2})', '(\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2})', '(\\d{4}-\\d{2}-\\d{2}-\\d{2})','\\(\\d{4}-\\d{2}-\\d{2}\\)', '\\d{4}-\\d{2}-\\d{2}',' - Copy','.[a-zA-Z]{1,4}$','\\([a-z]\\)','^[a-z]{1} ',' \\.','^ {1,}', ' {1,}$', ' {2,}', '\\d-', '_[a-zA-Z]{0,}$')) {
   if (is.null(donde)) {
     donde <- paste0(getwd(), '/')
   } else {
@@ -24,7 +24,7 @@ fimpiar <- function(donde = NULL, viejpeta = 'Viejo', nomviej = 'viejo|vieja', a
   archivosE <- archivosEp[!archivosEp$isdir,]
   carpetas <- archivosEp$Nombres[archivosEp$isdir]
   if(any(archivosEp$isdir)) {
-    impringar('Hay ', sum(archivosEp$isdir), ' carpeta(s) de nombre: ',carpetas)
+    impringar('Hay ', sum(archivosEp$isdir), ' carpeta(s) de nombre: ', paste0(carpetas, collapse = ', '))
   }
 
   VECTORe <- aextraer
@@ -43,7 +43,7 @@ fimpiar <- function(donde = NULL, viejpeta = 'Viejo', nomviej = 'viejo|vieja', a
   print(vEA)
 
   # Buscar si hay alguna carpeta de viejos
-  carviej <- grep(pattern = nomviej, x = carpetas, value = TRUE)
+  carviej <- grep(pattern = nomviej, x = carpetas, value = TRUE, ignore.case = TRUE)
   if(length(carviej)== 0) {
     # Si no hay ninguna la creo con el nombre que he dado
     impringar('No existía ninguna carpeta para archivos viejos, se creará una de nombre ', viejpeta)
@@ -56,7 +56,6 @@ fimpiar <- function(donde = NULL, viejpeta = 'Viejo', nomviej = 'viejo|vieja', a
     impringar('Ya hay ',nrow(candidatos),' carpeta(s) que cuandra(n) con la descripción: ', paste0(candidatos$Nombres, collapse = ', '),'... se ha elegido a ',viejpetaP$Nombres)
     viejfin <- rownames(viejpetaP)
   }
-
 
   # Meto los archivos viejos en la carpeta de viejos
   TABLAe <- archivosE
