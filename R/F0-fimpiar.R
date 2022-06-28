@@ -66,7 +66,6 @@ fimpiar <- function(donde = NULL, viejpeta = 'Viejo', nomviej = 'viejo|vieja', a
 
   suppressWarnings(for (elemento in seq(length(VECTORe3))) { # Recorro cada elemento simplificado
     ELEMENTO <- VECTORe3[elemento]
-    #ELEMENTO <- vEA[5]
     # Creo una subtabla de los archivos que tienen el nombre simplificado
     TABLAt <- TABLAm[!TABLAm$Nombres %in% VECTORs,]
     TABLAt <- TABLAt[grep(pattern = ELEMENTO, x = TABLAt$Nombres, ignore.case = FALSE),]
@@ -75,8 +74,6 @@ fimpiar <- function(donde = NULL, viejpeta = 'Viejo', nomviej = 'viejo|vieja', a
     # Selecciono el que sea más nuevo
     ELEGIDO <- TABLAt$Nombres[which.max(TABLAt$mtime)]
     VECTORs <- append(VECTORs, ELEGIDO)
-    # Elimino el elegido de la tabla para que no se lo lleve
-    #    TABLAm <- TABLAm[which(TABLAm$Nombres != ELEGIDO),]
     impringar("El archivo elegido es '", ELEGIDO,"'.")
     # Guardo los nombres del resto
     DESCARTADOS <- rownames(TABLAt[!TABLAt$Nombres %in% VECTORs,])
