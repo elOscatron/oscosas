@@ -12,7 +12,7 @@
 #' @param grande Si debe ser el archivo más grande (TRUE) o el más pequeño(FALSE), por defecto nada, se ignora
 #' @param todos Por defecto FALSE, si pongo TRUE mostrará todas las coincidencias
 #'
-#' @return
+#' @return archivo o archivos que cuadran con la búsqueda
 #' @export
 #'
 #' @examples
@@ -26,10 +26,17 @@ buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = 
 
   VECTORe <- fector(c(tiene, if(fin != '') {paste0(fin,'$')}))
   VECTORt <- c()
-  for (elemento in seq(length(VECTORe))) {
-    ELEMENTO <- VECTORe[elemento]
-    VECTORt <- if(length(VECTORt) == 0) {archivosC} else {VECTORt}
-    VECTORt <- grep(pattern = ELEMENTO, x = VECTORt, ignore.case = igmayT, value = TRUE)}
+
+  for (palabra in numcuencia(archivosC)) { # Recorro cada nombre de la lista
+    PALABRA <- archivosC[palabra]
+    CUMPLE <- c()
+    for (palabri in numcuencia(VECTORe)) { # Recorro cada patrón del argumento 'tiene' más el 'fin'
+      PALABRI <- VECTORe[palabri]
+      RESULTADO <-  grepl(pattern = PALABRI, x = PALABRA, ignore.case = igmayT)
+      CUMPLE <- append(CUMPLE, RESULTADO)
+    }
+    if(all(CUMPLE)) {VECTORt <- append(VECTORt, PALABRA)}
+  }
   VECTORt2 <- c()
   if(length(carece) != 0)
   { if (carece[1] != '') {
