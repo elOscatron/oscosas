@@ -30,12 +30,16 @@ buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = 
   for (palabra in numcuencia(archivosC)) { # Recorro cada nombre de la lista
     PALABRA <- archivosC[palabra]
     CUMPLE <- c()
-    for (palabri in length(VECTORe)) { # Recorro cada patrón del argumento 'tiene' más el 'fin'
+    for (palabri in seq(length(VECTORe))) { # Recorro cada patrón del argumento 'tiene' más el 'fin'
       PALABRI <- VECTORe[palabri]
       RESULTADO <-  grepl(pattern = PALABRI, x = PALABRA, ignore.case = igmayT)
-      CUMPLE <- append(CUMPLE, RESULTADO)}
-    if(length(CUMPLE) != 0) {if(all(CUMPLE)) {VECTORt <- append(VECTORt, PALABRA)}}
+      CUMPLE <- append(CUMPLE, RESULTADO)
+    }
+    if(length(CUMPLE) != 0) {if(all(CUMPLE)) {
+      VECTORt <- append(VECTORt, PALABRA)
+    }}
   }
+
   VECTORt2 <- c()
   if(length(carece) != 0)
   { if (carece[1] != '') {
@@ -45,7 +49,9 @@ buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = 
       VECTORt2 <- if(length(VECTORt2) == 0) {VECTORt} else {VECTORt2}
       VECTORt2 <- VECTORt2[!grepl(pattern = ELEMENTO, x = VECTORt2, ignore.case = igmayC)]}
   } else {
-    VECTORt2 <- VECTORt}}
+    VECTORt2 <- VECTORt
+  }}
+
   TABLAm2 <- archivosE[rownames(archivosE) %in% paste0(donde,VECTORt2),]
   if (!is.null(grande)) {if (grande) {
     TABLAm2 <- which.max(TABLAm2$size)} else {
