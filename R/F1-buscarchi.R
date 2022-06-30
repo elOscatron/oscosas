@@ -30,12 +30,11 @@ buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = 
   for (palabra in numcuencia(archivosC)) { # Recorro cada nombre de la lista
     PALABRA <- archivosC[palabra]
     CUMPLE <- c()
-    for (palabri in numcuencia(VECTORe)) { # Recorro cada patrón del argumento 'tiene' más el 'fin'
+    for (palabri in length(VECTORe)) { # Recorro cada patrón del argumento 'tiene' más el 'fin'
       PALABRI <- VECTORe[palabri]
       RESULTADO <-  grepl(pattern = PALABRI, x = PALABRA, ignore.case = igmayT)
-      CUMPLE <- append(CUMPLE, RESULTADO)
-    }
-    if(all(CUMPLE)) {VECTORt <- append(VECTORt, PALABRA)}
+      CUMPLE <- append(CUMPLE, RESULTADO)}
+    if(length(CUMPLE) != 0) {if(all(CUMPLE)) {VECTORt <- append(VECTORt, PALABRA)}}
   }
   VECTORt2 <- c()
   if(length(carece) != 0)
