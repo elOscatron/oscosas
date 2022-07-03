@@ -1,11 +1,11 @@
-#' Creación de tablas BED
+#' Creaci?n de tablas BED
 #'
-#' Crea una tabla BED 'facilmente' (la función es compleja e imprefecta, pero la otra forma de hacer esto es un puto infierno) especificando un vector con los nombres de las columnas que se tienen. Hay que poner NA en los huecos o, poner FALSE en esa columna como argumento. Tiene opci?n de poner color y cromosoma concreto, de guardar y de darle la vuelta a las secuencias. Esto es porque por alg?n motivo me salen al reves con lo del bisulfito
+#' Crea una tabla BED 'facilmente' (la funci?n es compleja e imprefecta, pero la otra forma de hacer esto es un puto infierno) especificando un vector con los nombres de las columnas que se tienen. Hay que poner NA en los huecos o, poner FALSE en esa columna como argumento. Tiene opci?n de poner color y cromosoma concreto, de guardar y de darle la vuelta a las secuencias. Esto es porque por alg?n motivo me salen al reves con lo del bisulfito
 #'
 #' @param TABLA Tabla con los datos
 #' @param Nombres Dar un vector indicando que columnas se proporcionan
 #' @param Excluidos Dar un vector indicando que columnas NO se proporcionan`
-#' @param Cromosoma Esta y las siguientes opciones para poner el nombre específico de la columna o si no está
+#' @param Cromosoma Esta y las siguientes opciones para poner el nombre espec?fico de la columna o si no est?
 #' @param Inicio
 #' @param Fin
 #' @param Nombre
@@ -14,10 +14,10 @@
 #' @param GordIni
 #' @param GordFin
 #' @param Color
-#' @param CromosomaE Esta opción pide un nombre de cromosoma, es util en caso de que toda la tabla tenga el mismo o vengan en un vector separado
-#' @param ColorE Similarmente a la opción permite poner el mismo color a toda la tabla o una serie de los mismos personalizados
+#' @param CromosomaE Esta opci?n pide un nombre de cromosoma, es util en caso de que toda la tabla tenga el mismo o vengan en un vector separado
+#' @param ColorE Similarmente a la opci?n permite poner el mismo color a toda la tabla o una serie de los mismos personalizados
 #' @param Guardar Indica si se quiere exportar la tabla
-#' @param Secuencia SI es verdadero, se añadiré la secuencia de ADN al nombre, útil para oligos y ver si están en el sitio adecuado
+#' @param Secuencia SI es verdadero, se a?adir? la secuencia de ADN al nombre, ?til para oligos y ver si est?n en el sitio adecuado
 #' @param EnReverso Le da la vuelta a la secuencia cuando la va a poner en los nombres. Esto es lo que se hace en los oligos
 #'
 #' @return
@@ -29,6 +29,9 @@ tablaBED <- function(TABLA, Nombres = NA, Excluidos = NA,
                      Puntaje = FALSE, Hebra = NA, GordIni = FALSE, GordFin = FALSE, Color = FALSE,
                      CromosomaE = FALSE, ColorE = FALSE,
                      Guardar = FALSE, Secuencia = FALSE, EnReverso = FALSE) {
+  # Lo primero es desactivar la opciÃ³n de notaciÃ³n cientÃ­fica para que no me joda las coordenadas
+  options(scipen=999)
+
   # Fectorizo los nombres y exclu?dos
   Nombres <- fector(Nombres)
   esnaN <- !is.na(Nombres)[1]
