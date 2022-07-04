@@ -40,17 +40,24 @@ buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = 
     }}
   }
 
-  VECTORt2 <- c()
-  if(length(carece) != 0)
-  { if (carece[1] != '') {
+  if(is.null(VECTORt)) {
+    stop(impringar('No se ha encontrado nada con los parámetros ', paste0(VECTORe, collapse = ', ')))}
+
+  if(length(carece) != 0) {if (carece[1] != '') {
+    VECTORt2 <- c()
     VECTORe <- fector(carece)
-    for (elemento in seq(length(VECTORe))) {
-      ELEMENTO <- VECTORe[elemento]
-      VECTORt2 <- if(length(VECTORt2) == 0) {VECTORt} else {VECTORt2}
-      VECTORt2 <- VECTORt2[!grepl(pattern = ELEMENTO, x = VECTORt2, ignore.case = igmayC)]}
-  } else {
-    VECTORt2 <- VECTORt
-  }}
+    for (palabra in numcuencia(VECTORt)) {
+      PALABRA <- VECTORt[palabra]
+      PRUEBAS <- c()
+      for (elemento in seq(length(VECTORe))) {
+        ELEMENTO <- VECTORe[elemento]
+        PRUEBA <- !grepl(pattern = ELEMENTO, x = PALABRA, ignore.case = igmayC)
+        PRUEBAS <- append(PRUEBAS, PRUEBA)
+      } # Fin del bucle de los patrones a excluir
+      if(all(PRUEBAS)) {VECTORt2 <- append(VECTORt2, PALABRA)}
+    } # Fin del bucle de las palabras
+  } # Fin del condicional de que no haya excluyentes
+    else {VECTORt2 <- VECTORt}}
 
   TABLAm2 <- archivosE[rownames(archivosE) %in% paste0(donde,VECTORt2),]
   if (!is.null(grande)) {if (grande) {
