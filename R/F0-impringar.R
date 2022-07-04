@@ -18,7 +18,7 @@ impringar <- function(..., salto = FALSE, collapse = NULL, recycle0 = FALSE, ver
   # Si verbose es cierto simplemente imprimo el vector, si no, lo devuelvo para un objeto u otra función
   if (verbose) {
     print(VECTORs)
-    if(salto) {cat('\n')}
-    } else {
+    if(salto) {cat('\n')
+      }} else {
       return(VECTORs)}
 }
