@@ -18,5 +18,5 @@ guardabla <- function(nombreT, donde = NA, formatoT = "(%Y-%m-%d-%H-%M)", format
   if(!grepl(pattern = '\\.',x = formatoA)) {
     formatoA <- paste0('.',formatoA)}
   if(grepl(pattern = 'xlsx', x = formatoA)) {
-    xlsx::write.xlsx(x = get(nombreT), file = paste0(donde, nombreT, tiempo, formatoA))}
+    openxlsx::write.xlsx(x = get(nombreT), file = paste0(donde, nombreT, tiempo, formatoA))}
 }
