@@ -12,7 +12,7 @@
 #' @param grande Si debe ser el archivo más grande (TRUE) o el más pequeño(FALSE), por defecto nada, se ignora
 #' @param todos Por defecto FALSE, si pongo TRUE mostrará todas las coincidencias
 #'
-#' @return
+#' @return archivo o archivos que cuadran con la búsqueda
 #' @export
 #'
 #' @examples
@@ -26,20 +26,39 @@ buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = 
 
   VECTORe <- fector(c(tiene, if(fin != '') {paste0(fin,'$')}))
   VECTORt <- c()
-  for (elemento in seq(length(VECTORe))) {
-    ELEMENTO <- VECTORe[elemento]
-    VECTORt <- if(length(VECTORt) == 0) {archivosC} else {VECTORt}
-    VECTORt <- grep(pattern = ELEMENTO, x = VECTORt, ignore.case = igmayT, value = TRUE)}
-  VECTORt2 <- c()
-  if(length(carece) != 0)
-  { if (carece[1] != '') {
+
+  for (palabra in numcuencia(archivosC)) { # Recorro cada nombre de la lista
+    PALABRA <- archivosC[palabra]
+    CUMPLE <- c()
+    for (palabri in seq(length(VECTORe))) { # Recorro cada patrón del argumento 'tiene' más el 'fin'
+      PALABRI <- VECTORe[palabri]
+      RESULTADO <-  grepl(pattern = PALABRI, x = PALABRA, ignore.case = igmayT)
+      CUMPLE <- append(CUMPLE, RESULTADO)
+    }
+    if(length(CUMPLE) != 0) {if(all(CUMPLE)) {
+      VECTORt <- append(VECTORt, PALABRA)
+    }}
+  }
+
+  if(is.null(VECTORt)) {
+    stop(impringar('No se ha encontrado nada con los par�metros ', paste0(VECTORe, collapse = ', ')))}
+
+  if(length(carece) != 0) {if (carece[1] != '') {
+    VECTORt2 <- c()
     VECTORe <- fector(carece)
-    for (elemento in seq(length(VECTORe))) {
-      ELEMENTO <- VECTORe[elemento]
-      VECTORt2 <- if(length(VECTORt2) == 0) {VECTORt} else {VECTORt2}
-      VECTORt2 <- VECTORt2[!grepl(pattern = ELEMENTO, x = VECTORt2, ignore.case = igmayC)]}
-  } else {
-    VECTORt2 <- VECTORt}}
+    for (palabra in numcuencia(VECTORt)) {
+      PALABRA <- VECTORt[palabra]
+      PRUEBAS <- c()
+      for (elemento in seq(length(VECTORe))) {
+        ELEMENTO <- VECTORe[elemento]
+        PRUEBA <- !grepl(pattern = ELEMENTO, x = PALABRA, ignore.case = igmayC)
+        PRUEBAS <- append(PRUEBAS, PRUEBA)
+      } # Fin del bucle de los patrones a excluir
+      if(all(PRUEBAS)) {VECTORt2 <- append(VECTORt2, PALABRA)}
+    } # Fin del bucle de las palabras
+  } # Fin del condicional de que no haya excluyentes
+    else {VECTORt2 <- VECTORt}}
+
   TABLAm2 <- archivosE[rownames(archivosE) %in% paste0(donde,VECTORt2),]
   if (!is.null(grande)) {if (grande) {
     TABLAm2 <- which.max(TABLAm2$size)} else {

@@ -6,16 +6,19 @@
 #' @param collapse
 #' @param recycle0
 #' @param verbose Si quiero que la cosa simplemente se imprima o que se guarde
+#' @param salto Si quiero añadir un salto de linea, por defecto no
 #'
 #' @return El vector pegado
 #' @export
 #'
 #' @examples
-impringar <- function(..., collapse = NULL, recycle0 = FALSE, verbose = TRUE) {
+impringar <- function(..., salto = FALSE, collapse = NULL, recycle0 = FALSE, verbose = TRUE) {
   # Guardo un vector con los elementos pegados usando los brillantes argumentos originales de paste0
   VECTORs <- paste0(..., collapse = collapse, recycle0 = recycle0)
   # Si verbose es cierto simplemente imprimo el vector, si no, lo devuelvo para un objeto u otra función
-  if (verbose) {print(VECTORs)
-  } else {
-    return(VECTORs)}
+  if (verbose) {
+    print(VECTORs)
+    if(salto) {cat('\n')
+      }} else {
+      return(VECTORs)}
 }
