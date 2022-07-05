@@ -1,6 +1,6 @@
 library(openxlsx)
 
-Libro2 <- read_excel("data-raw/Libro2.xlsx")
+Libro2 <- openxlsx::read.xlsx("data-raw/Libro2.xlsx")
 
 # Data cleaning code here...
 # (Do NOT put data analysis code here!)
