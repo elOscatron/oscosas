@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-finterval <- function(VECTORe = sample(x = 7418880, size = 108), fijos = 23, logaritmicos = FALSE, colores = '#90EE90,#006400', ver = TRUE) {
+finterval <- function(VECTORe = sample(x = 7418880, size = 108), fijos = 23, logaritmicos = FALSE, colores = '#90EE90,#006400', ver = TRUE, verC = TRUE) {
   # Tamaño mínimo y máximo
   MIN <- min(VECTORe)
   MAX <- max(VECTORe)
@@ -22,7 +22,7 @@ finterval <- function(VECTORe = sample(x = 7418880, size = 108), fijos = 23, log
     # Diferencia y tamaño de intervalos fijos
     DIF <- MAX - MIN
     TIN <- DIF/intervalos
-    colores <- rangoC(tonos = intervalos, colores =  colores)
+    colores <- rangoC(tonos = intervalos, colores =  colores, ver = verC)
 
     TABLAs <- data.frame()
     for (intervalo in seq(intervalos)) {
@@ -42,7 +42,7 @@ finterval <- function(VECTORe = sample(x = 7418880, size = 108), fijos = 23, log
     }
     fragmentos <- length(FRAGS)
     TABLAs <- data.frame()
-    colores <- rangoC(tonos = fragmentos, colores =  colores)
+    colores <- rangoC(tonos = fragmentos, colores =  colores, ver = verC)
 
     for (fragmento in seq(length(FRAGS))) {
       FRAGp <- FRAGS[fragmento-1]
