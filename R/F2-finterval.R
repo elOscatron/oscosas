@@ -3,6 +3,8 @@
 #' Usando la función rangoC, crea un rango de colores, pero no en un número absurdo, sino que se puede especificar cuantos y, más importante, se puede hacer que sea en escala logarítmica, de forma que  los más pequeños se vean más diferentes. Por defecto tiene tonos verde claro a oscuro y trae un vector como ejemplo. La opción predeterminada son los fragmentos de tamaño fijo
 #'
 #' @param VECTORe El vector para el que tiene que crear los colores, debe ser numérico
+#' @param MIN el número mínimo para la escala, si no se dice nada se usará el mínimo del vector
+#' @param MAX  el número máximo para la escala, si no se dice nada se usará el máximo del vector
 #' @param fijos Cuantos colores se quieren crear, se asignarán al número por proximidad
 #' @param logaritmicos Por defecto FALSE, requiere un número que indicará el exponencial que se quiere para hacer el rando
 #' @param colores Colores entre los que se quiere hacer el rango. Usa rangoC
@@ -12,10 +14,10 @@
 #' @export
 #'
 #' @examples
-finterval <- function(VECTORe = sample(x = 7418880, size = 108), fijos = 23, logaritmicos = FALSE, colores = '#90EE90,#006400', ver = TRUE, verC = TRUE) {
+finterval <- function(VECTORe = sample(x = 7418880, size = 108), MIN = NA, MAX = NA, fijos = 23, logaritmicos = FALSE, colores = '#90EE90,#006400', ver = TRUE, verC = TRUE) {
   # Tamaño mínimo y máximo
-  MIN <- min(VECTORe)
-  MAX <- max(VECTORe)
+  MIN <- ifelse(test = is.na(MIN), yes = min(VECTORe), no = MIN)
+  MAX <- ifelse(test = is.na(MAX), yes = max(VECTORe), no = MAX)
 
   if (logaritmicos == FALSE | logaritmicos < 1.1) { # Fija
     intervalos <- fijos
