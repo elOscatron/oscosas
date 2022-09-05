@@ -65,7 +65,7 @@ objiminar <- function(nombres = 'objeto, lista, elemento, elementi, elementini, 
 
   # Búsqueda
   BUSCAR <- sort(append(oAMBIENTE, oBUCLE))
-  ENCONTRADOS <- ls()[ls() %in% BUSCAR]
+  ENCONTRADOS <- ls(envir = .GlobalEnv)[ls(envir = .GlobalEnv) %in% BUSCAR]
 
   # Eliminación o no
   if(length(ENCONTRADOS) == 0) {
