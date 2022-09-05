@@ -73,6 +73,6 @@ objiminar <- function(nombres = 'objeto, lista, elemento, elementi, elementini, 
   } else {
     print(paste0('Se han eliminado ',length(ENCONTRADOS),' objetos, estos son sus nombres:'))
     print(ENCONTRADOS)
-    rm(list = ENCONTRADOS)
+    rm(list = ENCONTRADOS, envir = .GlobalEnv)
   }
 }
