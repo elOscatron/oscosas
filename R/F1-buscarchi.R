@@ -41,7 +41,7 @@ buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = 
   }
 
   if(is.null(VECTORt)) {
-    stop(impringar('No se ha encontrado nada con los parámetros ', paste0(VECTORe, collapse = ', ')))}
+    stop(impringar('No se ha encontrado nada con los parAmetros ', paste0(VECTORe, collapse = ', ')))}
 
   if(length(carece) != 0) {if (carece[1] != '') {
     VECTORt2 <- c()
