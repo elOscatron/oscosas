@@ -32,6 +32,11 @@ facias <- function(TABLAe, filas = TRUE, columnas = TRUE){
     # Uso el vactor identificador para rehacer la tabla
     TABLAs <- TABLAe[,VECTORs]
   }
-  # Si no pongo el data.frame() y solo queda una fila o columna
-  return(data.frame(TABLAs))
+
+  if(class(TABLAs) != 'data.frame') {
+    # Si no pongo el data.frame() y solo queda una fila o columna hace un vector
+    TABLAs <- data.frame(TABLAs)
+  }
+
+  return(TABLAs)
 }
