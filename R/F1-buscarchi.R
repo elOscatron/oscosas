@@ -61,8 +61,8 @@ buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = 
 
   TABLAm2 <- archivosE[rownames(archivosE) %in% paste0(donde,VECTORt2),]
   if (!is.null(grande)) {if (grande) {
-    TABLAm2 <- which.max(TABLAm2$size)} else {
-      TABLAm2 <- which.min(TABLAm2$size)}}
+    TABLAm2 <- TABLAm2[which.max(TABLAm2$size),]} else {
+      TABLAm2 <- TABLAm2[which.min(TABLAm2$size),]}}
   TABLAm2 <- archivosE[rownames(archivosE) %in% rownames(TABLAm2),]
   if (nuevo) {
     archivo <- rownames(TABLAm2)[which.max(TABLAm2$mtime)]
