@@ -16,7 +16,7 @@
 tac <- function(tipo = 'simple', unidades = 'auto', mostrar = FALSE, digitos = 3, grado = 0, eliminarI = TRUE, eliminarTT = FALSE) {
   nombreI <- if (grado != 0) {paste0('tinicio',grado)} else {'tinicio'}
   nombreF <- if (grado != 0) {paste0('tifin',grado)} else {'tifin'}
-  tTIEMPO <- si.error(intento = tTIEMPO, alternativa = fabla(columnas = 'Inicio, Fin, Diferencia'))
+  tTIEMPO <- si.error(intento = tTIEMPO, EsError = fabla(columnas = 'Inicio, Fin, Diferencia'))
   assign(x = nombreF, value = Sys.time(), envir = .GlobalEnv)
   INIt <- get(nombreI)
   FINt <- get(nombreF)
