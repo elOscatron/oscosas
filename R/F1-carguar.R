@@ -1,6 +1,7 @@
 #' carga y/o guarda o viceversa un objeto
 #'
 #' dado un nobre, mira si un ojeto existe, si no, busca el nombre exacto en formato rds con la fecha actual, si no está busca con otra fecha o un archivo que contenga ese nombre. Una vez tiene el objeto, crea el archivo con el nombre y la fecha
+#' Depende de si.error()
 #'
 #' @param nombre Nombre del objeto
 #' @param sobrescribirO Si se desea sobrescribir el objeto usando el archivo que haya encontrado. Por defecto FALSE, al poner NULL hará preguntará
@@ -24,7 +25,7 @@ carguar <- function(nombre, sobrescribirO = FALSE, sobrescribirA = FALSE, exacto
   EXACTOp <- completo %in% archivos
   EXACTO <- paste0(donde,completo)
   # Crear un COMPATIBLESp que ya refleje si hay rds y el nombre deseado. Luego arreglar COMPATIBLES para que solo elija los tipo RDS
-  COMPATIBLESp <- si.error(grep(pattern = nombre, x = archivos), alternativa = FALSE, mensajeNEG = TRUE)
+  COMPATIBLESp <- si.error(intento = grep(pattern = nombre, x = archivos), EsError = FALSE, NoEsError = TRUE)
   COMPATIBLES <- if (COMPATIBLESp) {archivosT[grep(pattern = nombre, x = archivos),]}
   NUEVOEL <- rownames(COMPATIBLES)[which.max(COMPATIBLES$mtime)]
   OBJETOp <- try(expr = exists(nombre), silent = TRUE) == TRUE
