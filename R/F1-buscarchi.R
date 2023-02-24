@@ -11,18 +11,21 @@
 #' @param nuevo Si debe ser el archivo más nuevo (TRUE) o el más viejo (FALSE), por defecto es el más nuevo
 #' @param grande Si debe ser el archivo más grande (TRUE) o el más pequeño(FALSE), por defecto nada, se ignora
 #' @param todos Por defecto FALSE, si pongo TRUE mostrará todas las coincidencias
+#' @param recursivo Por defecto FALSE, permite buscar en carpetas hijas
 #'
 #' @return archivo o archivos que cuadran con la búsqueda
 #' @export
 #'
 #' @examples
-buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = TRUE, igmayC = TRUE, nuevo = TRUE, grande = NULL, todos = FALSE) {
+buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = TRUE, igmayC = TRUE, nuevo = TRUE, grande = NULL, todos = FALSE, recursivo = FALSE) {
   if (is.null(donde)) {
     donde <- paste0(getwd(), '/')
   } else {
     if (!grepl(pattern = '/$', x = donde)) {paste0(done,'/')}  }
-  archivosE <- file.info(dir(path = donde, full.names = TRUE))
-  archivosC <- rownames(file.info(dir(path = donde, full.names = FALSE)))
+  archivosE <- file.info(dir(path = donde, full.names = TRUE, recursive = recursivo))
+  rownames(archivosE) <- gsub(pattern = "/{2,}", replacement = '/', x = rownames(archivosE))
+  archivosC <- rownames(file.info(dir(path = donde, full.names = FALSE, recursive = recursivo)))
+  archivosC <- gsub(pattern = "/{2,}", replacement = '/', x = archivosC)
 
   VECTORe <- fector(c(tiene, if(fin != '') {paste0(fin,'$')}))
   VECTORt <- c()
@@ -75,3 +78,4 @@ buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = 
     return(archivo)
   }
 }
+
