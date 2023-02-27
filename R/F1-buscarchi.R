@@ -21,7 +21,7 @@ buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = 
   if (is.null(donde)) {
     donde <- paste0(getwd(), '/')
   } else {
-    if (!grepl(pattern = '/$', x = donde)) {paste0(done,'/')}  }
+    if (!grepl(pattern = '/$', x = donde)) {paste0(donde,'/')}  }
   archivosE <- file.info(dir(path = donde, full.names = TRUE, recursive = recursivo))
   rownames(archivosE) <- gsub(pattern = "/{2,}", replacement = '/', x = rownames(archivosE))
   archivosC <- rownames(file.info(dir(path = donde, full.names = FALSE, recursive = recursivo)))
