@@ -20,39 +20,40 @@
 fomparar <- function(VECTOR1, VECTOR2, silencio = FALSE, rows = FALSE) {
   # Detectamos si los argumentos son tablas y extraemos los nombres de las columnas o filas según corresponda
   if (is.data.frame(VECTOR1) |  is.matrix(VECTOR1)) {
-    print('El primer elemento es una tabla o matriz')
+    if (!silencio) {print('El primer elemento es una tabla o matriz')}
     if (rows) {
       VECTOR1a <- rownames(VECTOR1)
-      print('Se mirarán sus filas')
+      if (!silencio) {print('Se mirarán sus filas')}
     } else {
       VECTOR1a <- colnames(VECTOR1)
-      print('Se mirarán sus columnas')}
+      if (!silencio) {print('Se mirarán sus columnas')}}
   } else {
     VECTOR1a <- unlist(VECTOR1)
-    print('El primer elemento es un vector')}
+    if (!silencio) {print('El primer elemento es un vector')}}
   cat('\n')
 
   if (is.data.frame(VECTOR2) |  is.matrix(VECTOR2)) {
-    print('El segundo elemento es una tabla o matriz')
+    if (!silencio) {print('El segundo elemento es una tabla o matriz')}
     if (rows) {
       VECTOR2a <- rownames(VECTOR2)
-      print('Se mirarán sus filas')
+      if (!silencio) {print('Se mirarán sus filas')}
     } else {
       VECTOR2a <- colnames(VECTOR2)
-      print('Se mirarán sus columnas')}
+      if (!silencio) {print('Se mirarán sus columnas')}}
   } else {
     VECTOR2a <- unlist(VECTOR2)
-    print('El segundo elemento es un vector')}
+    if (!silencio) {print('El segundo elemento es un vector')}}
   cat('\n')
   # Obtenemos la longitud de cada vector
   length1 <- length(VECTOR1a)
   length2 <- length(VECTOR2a)
 
   # Comprobamos si los vectores tienen la misma longitud
-  if (length1 != length2) {
-    impringar('Los elementos tienen longitud diferente: ',length1,' y ', length2) } else {impringar('Los elementos tienen la misma longitud: ', length1)}
-  cat('\n')
-
+  if(!silencio) {
+    if (length1 != length2) {
+      impringar('Los elementos tienen longitud diferente: ',length1,' y ', length2) } else {impringar('Los elementos tienen la misma longitud: ', length1)}
+    cat('\n')
+  }
   # Comprobamos si los vectores tienen elementos en común
   common <- intersect(VECTOR1a, VECTOR2a)
   # Comprobamos si hay elementos exclusivos en VECTOR1
