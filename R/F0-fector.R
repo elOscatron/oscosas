@@ -26,9 +26,9 @@ fector <- function(VECTOR, sep = ',', ver = FALSE, extraer = FALSE) {
   while (previo != posterior | posterior == '') {
     for (PATRON in patrones) {
       posterior <- previo
-      bucle <- bucle + 1
       previo <- gsub(pattern = PATRON, replacement = sep , x = posterior)
     }
+    bucle <- bucle + 1
     if (ver) {print(paste0('Bucle nº ',bucle, ', vector de ',nchar(previo),' caractEres: ', previo))}
   }
   # Quito las solitarias del final y principio
