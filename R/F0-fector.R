@@ -23,7 +23,7 @@ fector <- function(VECTOR, sep = ',', ver = FALSE, extraer = FALSE) {
   # Preparo un bucle erosivo para eliminar patrones persistentes
   posterior <- ''
   bucle <- 0
-  while (previo != posterior | posterior == '') {
+  while (previo != posterior | posterior == '' | previo != '') {
     for (PATRON in patrones) {
       posterior <- previo
       previo <- gsub(pattern = PATRON, replacement = sep , x = posterior)
@@ -31,11 +31,13 @@ fector <- function(VECTOR, sep = ',', ver = FALSE, extraer = FALSE) {
     bucle <- bucle + 1
     if (ver) {print(paste0('Bucle nº ',bucle, ', vector de ',nchar(previo),' caractEres: ', previo))}
   }
+  VECTOR2 <- posterior
+
   # Quito las solitarias del final y principio
-  VECTOR <- gsub(pattern = paste0(sep,'$'), replacement = '', x =
-                   gsub(pattern = paste0('^',sep), replacement = '', x = posterior))
+  VECTOR3 <- gsub(pattern = paste0(sep,'$'), replacement = '', x =
+                   gsub(pattern = paste0('^',sep), replacement = '', x = VECTOR2))
   # Separo el vector usando el separador con los espacios extra que haya
-  vectorizado <- unlist(stringr::str_split(string = VECTOR, pattern = paste0(' *',sep,' *')))
-  if(extraer) {cat('\n',paste0('c(',paste0("'",vectorizado,"'", collapse = ","),')'),'\n\n')}
-  return(vectorizado)
+  VECTOR4 <- unlist(stringr::str_split(string = VECTOR3, pattern = paste0(' *',sep,' *')))
+  if(extraer) {cat('\n',paste0('c(',paste0("'",VECTOR4,"'", collapse = ","),')'),'\n\n')}
+  return(VECTOR4)
 }
