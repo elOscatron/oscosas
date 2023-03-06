@@ -18,21 +18,25 @@ fector <- function(VECTOR, sep = ',', ver = FALSE, extraer = FALSE) {
   sep <- paste0('\\',sep)
   # Establezco los patrones
   patrones <- c(paste0(sep,'{2,}'), paste0(sep,' +',sep))
-  # Pego el caracter de escape para que pueda usar muchas cosas como separación
-  previo <- VECTOR
-  # Preparo un bucle erosivo para eliminar patrones persistentes
-  posterior <- ''
-  bucle <- 0
-  while (previo != posterior | posterior == '' | previo != '') {
-    for (PATRON in patrones) {
-      posterior <- previo
-      previo <- gsub(pattern = PATRON, replacement = sep , x = posterior)
+  # Si el vector está vacío me salto el paso para evitar bucles infinitos
+  if(VECTOR == '') {
+    VECTOR2 <- VECTOR
+  } else {
+    # Pego el caracter de escape para que pueda usar muchas cosas como separación
+    previo <- VECTOR
+    # Preparo un bucle erosivo para eliminar patrones persistentes
+    posterior <- ''
+    bucle <- 0
+    while (previo != posterior | posterior == '') {
+      for (PATRON in patrones) {
+        posterior <- previo
+        previo <- gsub(pattern = PATRON, replacement = sep , x = posterior)
+      }
+      bucle <- bucle + 1
+      if (ver) {print(paste0('Bucle nº ',bucle, ', vector de ',nchar(previo),' caractEres: ', previo))}
     }
-    bucle <- bucle + 1
-    if (ver) {print(paste0('Bucle nº ',bucle, ', vector de ',nchar(previo),' caractEres: ', previo))}
+    VECTOR2 <- posterior
   }
-  VECTOR2 <- posterior
-
   # Quito las solitarias del final y principio
   VECTOR3 <- gsub(pattern = paste0(sep,'$'), replacement = '', x =
                    gsub(pattern = paste0('^',sep), replacement = '', x = VECTOR2))
