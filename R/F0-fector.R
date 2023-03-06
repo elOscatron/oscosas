@@ -14,34 +14,36 @@
 #' fector('rtvre`v`rtv`rvèrtv`r``trvr`v``trvtèr`vr`tv`rte`vert`v``  ``` ```  ``tv`rt',ver = TRUE, sep = '`')
 #'
 fector <- function(VECTOR, sep = ',', ver = FALSE, extraer = FALSE) {
-  # Corrijo el separador
-  sep <- paste0('\\',sep)
-  # Establezco los patrones
-  patrones <- c(paste0(sep,'{2,}'), paste0(sep,' +',sep))
-  # Si el vector está vacío me salto el paso para evitar bucles infinitos
-  if(VECTOR == '') {
-    VECTOR2 <- VECTOR
+  if(length(VECTOR) != 1) { # Si el vector es ya un vector real me salto la función
+    VECTOR4 <- VECTOR
   } else {
-    # Pego el caracter de escape para que pueda usar muchas cosas como separación
-    previo <- VECTOR
-    # Preparo un bucle erosivo para eliminar patrones persistentes
-    posterior <- ''
-    bucle <- 0
-    while (previo != posterior | posterior == '') {
-      for (PATRON in patrones) {
-        posterior <- previo
-        previo <- gsub(pattern = PATRON, replacement = sep , x = posterior)
+    if (VECTOR == '') { # Tamgbién si está vacío
+      VECTOR4 <- VECTOR
+    } else  {
+      # Corrijo el separador
+      sep <- paste0('\\',sep)
+      # Establezco los patrones
+      patrones <- c(paste0(sep,'{2,}'), paste0(sep,' +',sep))
+      # Pego el caracter de escape para que pueda usar muchas cosas como separación
+      previo <- VECTOR
+      # Preparo un bucle erosivo para eliminar patrones persistentes
+      posterior <- ''
+      bucle <- 0
+      while (previo != posterior | posterior == '') {
+        for (PATRON in patrones) {
+          posterior <- previo
+          previo <- gsub(pattern = PATRON, replacement = sep , x = posterior)
+        }
+        bucle <- bucle + 1
+        if (ver) {print(paste0('Bucle nº ',bucle, ', vector de ',nchar(previo),' caractEres: ', previo))}
       }
-      bucle <- bucle + 1
-      if (ver) {print(paste0('Bucle nº ',bucle, ', vector de ',nchar(previo),' caractEres: ', previo))}
-    }
-    VECTOR2 <- posterior
-  }
-  # Quito las solitarias del final y principio
-  VECTOR3 <- gsub(pattern = paste0(sep,'$'), replacement = '', x =
-                   gsub(pattern = paste0('^',sep), replacement = '', x = VECTOR2))
-  # Separo el vector usando el separador con los espacios extra que haya
-  VECTOR4 <- unlist(stringr::str_split(string = VECTOR3, pattern = paste0(' *',sep,' *')))
-  if(extraer) {cat('\n',paste0('c(',paste0("'",VECTOR4,"'", collapse = ","),')'),'\n\n')}
+      VECTOR2 <- posterior
+      # Quito las solitarias del final y principio
+      VECTOR3 <- gsub(pattern = paste0(sep,'$'), replacement = '', x =
+                        gsub(pattern = paste0('^',sep), replacement = '', x = VECTOR2))
+      # Separo el vector usando el separador con los espacios extra que haya
+      VECTOR4 <- unlist(stringr::str_split(string = VECTOR3, pattern = paste0(' *',sep,' *')))
+      if(extraer) {cat('\n',paste0('c(',paste0("'",VECTOR4,"'", collapse = ","),')'),'\n\n')}
+    }}
   return(VECTOR4)
 }
