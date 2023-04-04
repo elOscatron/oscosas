@@ -83,12 +83,12 @@ tablaBED <- function(TABLA, Nombres = NA, Excluidos = NA,
   # En caso de que falten columnas, creo una vac?a con las columnas que no hay y la uno a la otra
   if (length(Columnas0) != 0) {
     TABLA0 <- fabla(columnas = Columnas0, filas = FILAS)
-    TABLA0[,] <- 0
+    TABLA0[, ] <- 0
     TABLAt <- cbind(TABLAm, TABLA0)
-  } else {
-    # Si no faltaba ninguna columna, simplemente pongo todas
+  } else { # Si no faltaba ninguna columna, simplemente pongo todas
     TABLAt <- TABLAm
   }
+
   # Reordeno la tabla reunificada
   TABLAs <- TABLAt[,TABLAn$Minus]
   # En caso de que no se hayan introducido, pongo las columnas de los trozos gordos
