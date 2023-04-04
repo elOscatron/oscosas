@@ -14,10 +14,10 @@
 #' fector('rtvre`v`rtv`rvèrtv`r``trvr`v``trvtèr`vr`tv`rte`vert`v``  ``` ```  ``tv`rt',ver = TRUE, sep = '`')
 #'
 fector <- function(VECTOR, sep = ',', ver = FALSE, extraer = FALSE) {
-  if(length(VECTOR) != 1 | is.na(VECTOR) | is.null(VECTOR)) { # Si el vector es ya un vector real me salto la función; así como si es NA o NULL
+  if(length(VECTOR) != 1) { # Si el vector es ya un vector real me salto la función
     VECTOR4 <- VECTOR
   } else {
-    if (VECTOR == '') { # Tamgbién si está vacío
+    if (VECTOR == '' | is.na(VECTOR) | is.null(VECTOR)) { # También si está vacío, es NA o NULL
       VECTOR4 <- VECTOR
     } else  {
       # Corrijo el separador
