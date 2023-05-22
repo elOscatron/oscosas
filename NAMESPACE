@@ -1,1 +1,2 @@
-exportPattern("^[[:alpha:]]+")
+import(BiocManager)
+BiocManager::install("Biostrings")
