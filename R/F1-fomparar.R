@@ -64,9 +64,9 @@ fomparar <- function(VECTOR1, VECTOR2, silencio = FALSE, rows = FALSE) {
   objeto <- list(Common = common, Exclusive1 = exclusive1, Exclusive2 = exclusive2)
 
   if (!silencio) {
-    impringar(length(common), ' elementos comunes: ', paste0(common, collapse = ', '))
-    impringar(length(exclusive1), ' elementos exclusivos en primer elemento: ', paste0(exclusive1, collapse = ', '))
-    impringar(length(exclusive2), ' elementos exclusivos en segundo elemento: ', paste0(exclusive2, collapse = ', '))}
+    impringar(length(common), ' elementos comunes: ', paste0(common, collapse = ', '), salto = TRUE)
+    impringar(length(exclusive1), ' elementos exclusivos en primer elemento: ', paste0(exclusive1, collapse = ', '), salto = TRUE)
+    impringar(length(exclusive2), ' elementos exclusivos en segundo elemento: ', paste0(exclusive2, collapse = ', '), salto = TRUE)}
   # Devolvemos el objeto
   invisible(objeto)
 }
