@@ -60,7 +60,7 @@ buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = 
       if(all(PRUEBAS)) {VECTORt2 <- append(VECTORt2, PALABRA)}
     } # Fin del bucle de las palabras
   } # Fin del condicional de que no haya excluyentes
-    else {VECTORt2 <- VECTORt}}
+    else {VECTORt2 <- VECTORt}} else  {VECTORt2 <- VECTORt}
 
   TABLAm2 <- archivosE[rownames(archivosE) %in% paste0(donde,VECTORt2),]
   if (!is.null(grande)) {if (grande) {
