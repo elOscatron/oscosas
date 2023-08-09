@@ -1,0 +1,37 @@
+# Previo
+## Funciones y paquetes
+```{r include = FALSE}
+princ <- paste0(dirname(getwd()),'/', '00-Comun', '/')
+arch <- c(paste0(princ,list.files(princ)), paste0(getwd(),'/',list.files(getwd())))
+aDC <- arch[grep(pattern = '.R$', x = arch)]
+sapply(X = paste0(aDC), FUN = source, chdir = TRUE)
+
+insgar(paquetes = 'biomaRt')
+```
+
+## Explicación
+
+## Archivos necesarios y creados no redundantes
+```{r}
+
+```
+
+```{r, eval=FALSE}
+
+```
+
+# Código
+```{r}
+
+```
+
+# Limpiar
+```{r Limpiar el área de trabajo, include = FALSE}
+princ <- paste0(dirname(getwd()),'/', '00-Comun', '/')
+arch <- c(paste0(princ,list.files(princ)), paste0(getwd(),'/',list.files(getwd())))
+aDC <- arch[grep(pattern = '.R$', x = arch)]
+sapply(X = paste0(aDC), FUN = source, chdir = TRUE)
+
+descargar()
+rm(list = ls(all = TRUE))
+```
