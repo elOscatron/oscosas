@@ -12,7 +12,7 @@
 #' @examples
 insgar <- function(paquetes, actu = FALSE) {
   Package <- fector(paquetes)
-  suppressMessages(suppressWarnings(BiocManager::install(Package, update = actu)))
+  suppressPackageStartupMessages(suppressMessages(suppressWarnings(BiocManager::install(Package, update = actu))))
   Loaded <- unlist(lapply(Package, require, character.only = TRUE))
   TABLAs <- data.frame(Package, Loaded)
   if(sum(TABLAs$Loaded == FALSE) != 0) {
