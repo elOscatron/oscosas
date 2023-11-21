@@ -12,11 +12,11 @@
 #' @examples
 insgar <- function(paquetes, actu = FALSE) {
   Package <- fector(paquetes)
-  suppressPackageStartupMessages(suppressMessages(suppressWarnings(BiocManager::install(Package, update = actu))))
-  Loaded <- unlist(lapply(Package, require, character.only = TRUE))
+  suppressMessages(suppressWarnings(suppressPackageStartupMessages(BiocManager::install(Package, update = actu))))
+  Loaded <- suppressMessages(suppressWarnings(unlist(lapply(Package, require, character.only = TRUE))))
   TABLAs <- data.frame(Package, Loaded)
   if(sum(TABLAs$Loaded == FALSE) != 0) {
-    print(paste0('The following packages have not been installed, try to install them manually:',
+    print(paste0('The following packages have not been installed, try to install them manually: ',
                  paste0(TABLAs$Package[TABLAs$Loaded == FALSE], collapse = '; ')))
   } else{
     print(paste0('All ',length(Package) ,' packages were correctly installed.'))
