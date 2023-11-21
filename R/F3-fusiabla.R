@@ -36,12 +36,12 @@ fusiabla <- function(TABLAe1, TABLAe2, infoC = FALSE) {
       if(infoC == "ambos") {c(length(COMUNES), ', llamadas: ', paste0(COMUNES, collapse = ", "))
       } else {
         paste0(COMUNES, collapse = ", ")}}),
-    c('Columnas comunes: ', if(infoC == "numero") {length(TABLAe1)
+    c('Columnas exclusivas de la primera tabla: ', if(infoC == "numero") {length(TABLAe1)
     } else {
       if(infoC == "ambos") {c(length(DIF1), ', llamadas: ', paste0(DIF1, collapse = ", "))
       } else {
         paste0(DIF1, collapse = ", ")}}),
-    c('Columnas comunes: ', if(infoC == "numero") {length(TABLAe2)
+    c('Columnas exclusivas de la segunda tabla: ', if(infoC == "numero") {length(TABLAe2)
     } else {
       if(infoC == "ambos") {c(length(DIF2), ', llamadas: ', paste0(DIF2, collapse = ", "))
       } else {
