@@ -19,6 +19,6 @@ insgar <- function(paquetes, actu = FALSE) {
     print(paste0('The following packages have not been installed, try to install them manually: ',
                  paste0(TABLAs$Package[TABLAs$Loaded == FALSE], collapse = '; ')))
   } else{
-    print(paste0('All ',length(Package) ,' packages were correctly installed.'))
+    print(paste0('All ',length(Package) ,' packages were correctly loaded and/or installed.'))
   }
 }
