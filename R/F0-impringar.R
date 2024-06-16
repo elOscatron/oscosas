@@ -16,7 +16,7 @@
 #' @export
 #'
 #' @examples
-impringar <- function(..., presep = NULL, sep = NULL, presalto = FALSE, salto = FALSE, collapse = NULL, recycle0 = FALSE, verbose = TRUE) {
+impringar <- function(..., presep = NULL, sep = NULL, presalto = FALSE, salto = FALSE, collapse = NULL, recycle0 = FALSE, save = NULL, verbose = TRUE) {
   # Guardo un vector con los elementos pegados usando los brillantes argumentos originales de paste0
   VECTORs <- paste0(..., collapse = collapse, recycle0 = recycle0)
   # Si verbose es cierto simplemente imprimo el vector, si no, lo devuelvo para un objeto u otra función
@@ -30,6 +30,7 @@ impringar <- function(..., presep = NULL, sep = NULL, presalto = FALSE, salto = 
       print(sep)}
     if(salto) { # Si añado un salto posterior
       cat('\n')}
-  } else {
-    return(VECTORs)}
+  }
+  # Devolver el vector independientemente del valor de verbose
+  invisible(VECTORs)
 }
