@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-objiminar <- function(nombres = 'objeto, lista, elemento, elementi, elementini, elementinio, tabla, matriz, vector, fila, columna, atomo, bucle', cuantos = 9, letras ='e, s, m, t'){
+objiminar <- function(nombres = 'objeto, lista, elemento, elementi, elementini, elementinio, tabla, matriz, vector, fila, columna, atomo, bucle, numero, funcion, palabra', cuantos = 9, letras ='e, s, m, t'){
   # Fectorizo las variables
   nombres <- fector(nombres)
   letras <- fector(letras)
