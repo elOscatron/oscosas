@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-listnombrar <- function(...) {
+lisnombrar <- function(...) {
   nombres <- as.character(substitute(list(...)))[-1L]
   objetos <- list(...)
   setNames(objetos, nombres)
