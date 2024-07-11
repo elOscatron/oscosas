@@ -43,6 +43,16 @@ buscarchi <- function(donde = NULL, tiene = '', carece = '', fin = '', igmayT = 
     }}
   }
 
+  # Comprobar si hay archivos abiertos
+  TESTabi <- grepl(pattern = '~\\$', x = VECTORt)
+  if(any(TESTabi)) {
+    warning("Uno o varios de los archivos compatibles están abiertos.")
+    VECTORt <- VECTORt[!TESTabi]
+  }
+
+  if(is.null(VECTORt)) {
+    stop(impringar('No se ha encontrado nada con los parAmetros ', paste0(VECTORe, collapse = ', ')))}
+
   if(is.null(VECTORt)) {
     stop(impringar('No se ha encontrado nada con los parAmetros ', paste0(VECTORe, collapse = ', ')))}
 
