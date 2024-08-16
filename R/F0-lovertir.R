@@ -9,7 +9,7 @@
 #'
 #' @examples
 
-loveritr <- function(TABLAe) {
+lovertir <- function(TABLAe) {
   vCOL <- colnames(TABLAe)
   vFIL <- rownames(TABLAe)
 
